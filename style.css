@@ -1,0 +1,382 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background: linear-gradient(135deg, #fbcfe8 0%, #f472b6 35%, #e9d5ff 70%, #fed7aa 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 0.75rem;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Floating Sakura and Hearts Background */
+.background-decorations {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.floating-petal {
+  position: absolute;
+  user-select: none;
+  pointer-events: none;
+  animation: fallDown linear infinite;
+}
+
+@keyframes fallDown {
+  0% {
+    transform: translateY(-10vh) rotate(0deg) scale(0.8);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.9;
+  }
+  90% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(105vh) rotate(360deg) scale(1.1);
+    opacity: 0;
+  }
+}
+
+/* Mobile Frame (Centered Card like in screenshot) */
+.mobile-frame {
+  width: 100%;
+  max-width: 380px;
+  min-height: 600px;
+  position: relative;
+  z-index: 10;
+}
+
+.card-screen {
+  display: none;
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1.5px solid rgba(255, 255, 255, 0.9);
+  border-radius: 36px;
+  padding: 2.2rem 1.75rem;
+  text-align: center;
+  box-shadow: 
+    0 20px 45px -10px rgba(244, 114, 182, 0.4),
+    0 0 30px rgba(255, 255, 255, 0.6) inset;
+  position: relative;
+  overflow: hidden;
+  animation: scaleIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.card-screen.active {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 580px;
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.92) translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Decorative Stickers around corners */
+.top-decor, .bottom-decor {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  pointer-events: none;
+}
+
+.top-decor { top: 12px; }
+.bottom-decor { bottom: 12px; }
+
+.blossom {
+  position: absolute;
+  font-size: 1.4rem;
+  animation: floatSoft 3s ease-in-out infinite alternate;
+}
+.blossom-1 { left: -14px; top: -6px; }
+.blossom-2 { right: -12px; bottom: 4px; }
+.blossom-3 { left: -10px; bottom: 8px; }
+.blossom-4 { right: -12px; bottom: 10px; }
+
+.heart-float {
+  position: absolute;
+  font-size: 1.2rem;
+  animation: floatHeart 2.5s ease-in-out infinite alternate;
+}
+.h-1 { right: 18px; top: 10px; }
+.h-2 { left: 16px; bottom: 12px; }
+.h-3 { left: 16px; top: 12px; }
+.h-4 { right: 16px; bottom: 12px; }
+.h-5 { right: 16px; top: 12px; }
+.h-6 { left: 18px; bottom: 12px; }
+
+.sparkle-star {
+  position: absolute;
+  color: #f472b6;
+  font-size: 1rem;
+}
+.s-1 { left: 24px; top: 20px; }
+.s-2 { right: 28px; top: 22px; }
+.s-3 { left: 24px; top: 22px; }
+
+@keyframes floatSoft {
+  0% { transform: translateY(0) rotate(0deg); }
+  100% { transform: translateY(-6px) rotate(10deg); }
+}
+
+@keyframes floatHeart {
+  0% { transform: scale(1) translateY(0); }
+  100% { transform: scale(1.18) translateY(-8px); }
+}
+
+.heart-pulse {
+  animation: pulseBeat 1.4s infinite ease-in-out;
+  transform-origin: center;
+}
+
+@keyframes pulseBeat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+/* Panda Illustrations */
+.panda-wrapper {
+  margin: 0.5rem 0 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.panda-illus, .panda-pair-illus, .panda-celebration-illus {
+  filter: drop-shadow(0 8px 16px rgba(244, 114, 182, 0.25));
+  transition: transform 0.3s;
+}
+
+.panda-wrapper:hover .panda-illus,
+.panda-wrapper:hover .panda-pair-illus {
+  transform: scale(1.05);
+}
+
+/* Typography */
+.main-title {
+  font-family: 'Caveat', cursive;
+  font-size: 2.5rem;
+  color: #831843;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.subtitle {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 1.05rem;
+  line-height: 1.45;
+  color: #374151;
+  margin-bottom: 0.75rem;
+  padding: 0 0.5rem;
+}
+
+.quote {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: #4b5563;
+  margin-bottom: 1.5rem;
+}
+
+.question-title {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 1.45rem;
+  line-height: 1.35;
+  color: #831843;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+}
+
+.question-sub {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 1.05rem;
+  color: #374151;
+  margin-bottom: 1.8rem;
+}
+
+/* Buttons */
+.bottom-action {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.btn-glow {
+  width: 100%;
+  padding: 1rem 1.25rem;
+  border: none;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, #f43f5e 0%, #ec4899 50%, #f472b6 100%);
+  color: #ffffff;
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 
+    0 10px 25px -4px rgba(244, 63, 94, 0.5),
+    0 0 15px rgba(255, 255, 255, 0.4) inset;
+  transition: all 0.25s ease;
+  user-select: none;
+}
+
+.btn-glow:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 14px 28px -4px rgba(244, 63, 94, 0.65),
+    0 0 20px rgba(255, 255, 255, 0.6) inset;
+}
+
+.btn-glow:active {
+  transform: scale(0.97);
+}
+
+/* Choice Buttons (Yes & No) */
+.choice-buttons {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  min-height: 60px;
+}
+
+.btn-yes {
+  flex: 1;
+  max-width: 140px;
+  padding: 0.85rem 1.25rem;
+  border: none;
+  border-radius: 9999px;
+  background: #a7f3d0;
+  color: #065f46;
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.btn-yes:hover {
+  background: #6ee7b7;
+  transform: scale(1.06);
+}
+
+.btn-no {
+  flex: 1;
+  max-width: 140px;
+  padding: 0.85rem 1.25rem;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 9999px;
+  background: #ffffff;
+  color: #6b7280;
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.persuasion-msg {
+  color: #db2777;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-top: 1rem;
+  animation: fadeIn 0.3s;
+}
+
+/* Screen 3: Celebration */
+.success-header {
+  margin-bottom: 1.2rem;
+}
+
+.success-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #831843;
+  line-height: 1.35;
+  margin-bottom: 0.5rem;
+}
+
+.success-subtitle {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 0.95rem;
+  color: #4b5563;
+}
+
+.promises-card {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 20px;
+  padding: 1.1rem 1.2rem;
+  box-shadow: 0 4px 15px rgba(244, 114, 182, 0.15);
+  margin-bottom: 1.2rem;
+  text-align: left;
+}
+
+.promises-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.promises-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.88rem;
+  color: #1f2937;
+  font-weight: 500;
+}
+
+.promise-icon {
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.celebrate-btn-box {
+  width: 100%;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Confetti Canvas */
+#confetti-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 999;
+}
