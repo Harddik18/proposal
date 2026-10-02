@@ -1,77 +1,84 @@
 // Screen Navigation
-function goToScreen(num) {
+function nextScreen(num) {
   document.querySelectorAll('.card-screen').forEach(s => s.classList.remove('active'));
   const target = document.getElementById('screen-' + num);
   if (target) {
     target.classList.add('active');
+  }
+  // Start gentle music if not started
+  if (!isMusicPlaying) {
+    startRomanticMusic();
   }
 }
 
 // Background Floating Petals & Hearts
 function initBackgroundDecor() {
   const decor = document.getElementById('decorations');
-  const items = ['🌸', '💖', '💕', '✨', '🌸', '🤍'];
+  const items = ['🌸', '💖', '💕', '✨', '🌹', '🤍', '🪷'];
   
-  for (let i = 0; i < 22; i++) {
+  for (let i = 0; i < 26; i++) {
     const el = document.createElement('div');
     el.className = 'floating-petal';
     el.innerText = items[Math.floor(Math.random() * items.length)];
     el.style.left = Math.random() * 100 + 'vw';
     el.style.animationDuration = (Math.random() * 6 + 6) + 's';
     el.style.animationDelay = (Math.random() * 8) + 's';
-    el.style.fontSize = (Math.random() * 16 + 14) + 'px';
+    el.style.fontSize = (Math.random() * 18 + 14) + 'px';
     decor.appendChild(el);
   }
 }
 initBackgroundDecor();
 
-// Playful "No" Button Interaction
-let dodgeCount = 0;
-const messages = [
-  "Are you sure? 🥺",
-  "Think again! ✈️",
-  "You can't say no to this adventure! 😉💖",
-  "The pandas will be sad! 🐼💔",
-  "Just click YES! ✨"
+// Playful "Not today... 💨" Button Interaction
+let dodgeCounters = { 2: 0, 3: 0 };
+const persuasionMessages = [
+  "Are you sure, Sakina? 🥺",
+  "Think again, Batu! 💖",
+  "Radha's heart belongs to Krishna only! 🌸",
+  "You cannot say no to our lifetime story! 😉✨",
+  "Just say YES to your Kanhaiya! 🦚❤️"
 ];
 
-function dodgeNo() {
-  const noBtn = document.getElementById('btn-no');
-  const yesBtn = document.getElementById('btn-yes');
-  const msgEl = document.getElementById('persuasion-text');
+function dodgeNo(step) {
+  const noBtn = document.getElementById('btn-no-' + step);
+  const yesBtn = document.getElementById('btn-yes-' + step);
+  const msgEl = document.getElementById('persuasion-text-' + step);
 
-  dodgeCount++;
+  dodgeCounters[step] = (dodgeCounters[step] || 0) + 1;
+  const count = dodgeCounters[step];
 
-  // Make Yes button grow bigger
-  const scale = 1 + (dodgeCount * 0.12);
-  yesBtn.style.transform = `scale(${Math.min(scale, 1.6)})`;
+  // Make Yes button bloom bigger
+  const scale = 1 + (count * 0.12);
+  yesBtn.style.transform = `scale(${Math.min(scale, 1.55)})`;
 
   // Random offset for No button
-  const randomX = (Math.random() - 0.5) * 120;
-  const randomY = (Math.random() - 0.5) * 80;
+  const randomX = (Math.random() - 0.5) * 110;
+  const randomY = (Math.random() - 0.5) * 70;
   noBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
 
-  // Show persuasion message
-  msgEl.innerText = messages[(dodgeCount - 1) % messages.length];
+  // Show cute message
+  msgEl.innerText = persuasionMessages[(count - 1) % persuasionMessages.length];
   msgEl.classList.remove('hidden');
 
-  // Play gentle boing sound
-  playSoftBeep(320);
+  playSoftPluck(440);
 }
 
 // "Yes" Click Handler
 function handleYesClick() {
-  goToScreen(3);
+  nextScreen(4);
   fireHeartConfetti();
-  playLoveMelody();
+  playJoyfulCelebrationChime();
+  if (!isMusicPlaying) {
+    startRomanticMusic();
+  }
 }
 
 function fireMoreLove() {
   fireHeartConfetti();
-  playLoveMelody();
+  playJoyfulCelebrationChime();
 }
 
-// Confetti & Floating Hearts Engine
+// Celebration Confetti & Hearts
 function fireHeartConfetti() {
   const canvas = document.getElementById('confetti-canvas');
   if (!canvas) return;
@@ -80,18 +87,18 @@ function fireHeartConfetti() {
   canvas.height = window.innerHeight;
 
   const particles = [];
-  const emojis = ['💖', '🌸', '✨', '💕', '🎉', '✈️'];
+  const emojis = ['💖', '🌸', '✨', '💕', '🌹', '🦚', '🎉', '🤍'];
 
-  for (let i = 0; i < 60; i++) {
+  for (let i = 0; i < 70; i++) {
     particles.push({
       x: canvas.width / 2,
-      y: canvas.height * 0.45,
-      vx: (Math.random() - 0.5) * 16,
-      vy: (Math.random() - 0.9) * 18,
+      y: canvas.height * 0.42,
+      vx: (Math.random() - 0.5) * 18,
+      vy: (Math.random() - 0.9) * 20,
       emoji: emojis[Math.floor(Math.random() * emojis.length)],
-      size: Math.random() * 12 + 18,
+      size: Math.random() * 14 + 18,
       rotation: Math.random() * 360,
-      rSpeed: (Math.random() - 0.5) * 8
+      rSpeed: (Math.random() - 0.5) * 10
     });
   }
 
@@ -101,7 +108,7 @@ function fireHeartConfetti() {
     particles.forEach(p => {
       p.x += p.vx;
       p.y += p.vy;
-      p.vy += 0.4; // gravity
+      p.vy += 0.42;
       p.rotation += p.rSpeed;
 
       ctx.save();
@@ -115,7 +122,7 @@ function fireHeartConfetti() {
     });
 
     frame++;
-    if (frame < 140) {
+    if (frame < 150) {
       requestAnimationFrame(animate);
     } else {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -124,48 +131,173 @@ function fireHeartConfetti() {
   animate();
 }
 
-// Web Audio API Synthesizer (Works 100% offline, zero external files)
+// ==========================================
+// ROMANTIC MUSIC SYNTHESIZER (Web Audio API)
+// 100% Native, Zero Downloads, Beautiful Tone
+// ==========================================
+
+let audioCtx = null;
+let isMusicPlaying = false;
+let melodyInterval = null;
+
 function getAudioContext() {
-  const AudioCtx = window.AudioContext || window.webkitAudioContext;
-  return AudioCtx ? new AudioCtx() : null;
+  if (!audioCtx) {
+    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+    if (AudioContextClass) {
+      audioCtx = new AudioContextClass();
+    }
+  }
+  if (audioCtx && audioCtx.state === 'suspended') {
+    audioCtx.resume();
+  }
+  return audioCtx;
 }
 
-function playSoftBeep(freq) {
-  try {
-    const ctx = getAudioContext();
-    if (!ctx) return;
-    const osc = ctx.createOscillator();
-    const gain = ctx.createGain();
-    osc.type = 'sine';
-    osc.frequency.setValueAtTime(freq, ctx.currentTime);
-    gain.gain.setValueAtTime(0.08, ctx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.2);
-    osc.connect(gain);
-    gain.connect(ctx.destination);
-    osc.start();
-    osc.stop(ctx.currentTime + 0.2);
-  } catch (e) {}
+// Romantic melody notes (Harp / Celesta chords in C & F & G)
+const romanticScore = [
+  // C major 7
+  { note: 261.63, dur: 0.5 }, // C4
+  { note: 329.63, dur: 0.5 }, // E4
+  { note: 392.00, dur: 0.5 }, // G4
+  { note: 493.88, dur: 0.8 }, // B4
+  { note: 523.25, dur: 1.2 }, // C5
+  // A minor 7
+  { note: 220.00, dur: 0.5 }, // A3
+  { note: 261.63, dur: 0.5 }, // C4
+  { note: 329.63, dur: 0.5 }, // E4
+  { note: 392.00, dur: 0.8 }, // G4
+  { note: 440.00, dur: 1.2 }, // A4
+  // F major 7
+  { note: 174.61, dur: 0.5 }, // F3
+  { note: 261.63, dur: 0.5 }, // C4
+  { note: 329.63, dur: 0.5 }, // E4
+  { note: 392.00, dur: 0.8 }, // G4
+  { note: 523.25, dur: 1.2 }, // C5
+  // G dominant / sus
+  { note: 196.00, dur: 0.5 }, // G3
+  { note: 293.66, dur: 0.5 }, // D4
+  { note: 392.00, dur: 0.5 }, // G4
+  { note: 440.00, dur: 0.8 }, // A4
+  { note: 493.88, dur: 1.4 }, // B4
+];
+
+let noteIdx = 0;
+
+function playRomanticNote(freq, duration) {
+  const ctx = getAudioContext();
+  if (!ctx) return;
+
+  const now = ctx.currentTime;
+  const osc = ctx.createOscillator();
+  const gain = ctx.createGain();
+
+  // Warm gentle sine & triangle blend
+  osc.type = 'triangle';
+  osc.frequency.setValueAtTime(freq, now);
+
+  // Soft envelope for music-box feel
+  gain.gain.setValueAtTime(0.001, now);
+  gain.gain.linearRampToValueAtTime(0.08, now + 0.05);
+  gain.gain.exponentialRampToValueAtTime(0.0001, now + duration + 0.8);
+
+  osc.connect(gain);
+  gain.connect(ctx.destination);
+
+  osc.start(now);
+  osc.stop(now + duration + 0.9);
 }
 
-function playLoveMelody() {
-  try {
-    const ctx = getAudioContext();
-    if (!ctx) return;
-    // Pleasant romantic chime notes: C5, E5, G5, C6
-    const notes = [523.25, 659.25, 783.99, 1046.50];
-    notes.forEach((freq, idx) => {
-      setTimeout(() => {
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-        osc.type = 'triangle';
-        osc.frequency.setValueAtTime(freq, ctx.currentTime);
-        gain.gain.setValueAtTime(0.12, ctx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.6);
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-        osc.start();
-        osc.stop(ctx.currentTime + 0.6);
-      }, idx * 160);
-    });
-  } catch (e) {}
+function startRomanticMusic() {
+  const ctx = getAudioContext();
+  if (!ctx) return;
+
+  isMusicPlaying = true;
+  updateMusicButton(true);
+
+  if (melodyInterval) clearInterval(melodyInterval);
+
+  melodyInterval = setInterval(() => {
+    if (!isMusicPlaying) return;
+    const item = romanticScore[noteIdx];
+    playRomanticNote(item.note, item.dur);
+    noteIdx = (noteIdx + 1) % romanticScore.length;
+  }, 480);
 }
+
+function stopRomanticMusic() {
+  isMusicPlaying = false;
+  updateMusicButton(false);
+  if (melodyInterval) {
+    clearInterval(melodyInterval);
+    melodyInterval = null;
+  }
+}
+
+function toggleRomanticMusic() {
+  if (isMusicPlaying) {
+    stopRomanticMusic();
+  } else {
+    startRomanticMusic();
+  }
+}
+
+function updateMusicButton(playing) {
+  const btn = document.getElementById('music-btn');
+  const icon = document.getElementById('music-icon');
+  const txt = document.getElementById('music-text');
+
+  if (playing) {
+    btn.classList.add('playing');
+    icon.innerText = '🎵';
+    txt.innerText = 'Romantic Music: Playing';
+  } else {
+    btn.classList.remove('playing');
+    icon.innerText = '🔇';
+    txt.innerText = 'Music: Paused (Tap to Play)';
+  }
+}
+
+function playSoftPluck(freq) {
+  const ctx = getAudioContext();
+  if (!ctx) return;
+  const now = ctx.currentTime;
+  const osc = ctx.createOscillator();
+  const gain = ctx.createGain();
+  osc.type = 'sine';
+  osc.frequency.setValueAtTime(freq, now);
+  gain.gain.setValueAtTime(0.06, now);
+  gain.gain.exponentialRampToValueAtTime(0.001, now + 0.2);
+  osc.connect(gain);
+  gain.connect(ctx.destination);
+  osc.start(now);
+  osc.stop(now + 0.2);
+}
+
+function playJoyfulCelebrationChime() {
+  const ctx = getAudioContext();
+  if (!ctx) return;
+  const celebrationNotes = [523.25, 659.25, 783.99, 1046.50, 1318.51];
+  celebrationNotes.forEach((freq, idx) => {
+    setTimeout(() => {
+      const now = ctx.currentTime;
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(freq, now);
+      gain.gain.setValueAtTime(0.12, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.7);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start(now);
+      osc.stop(now + 0.7);
+    }, idx * 130);
+  });
+}
+
+// First click anywhere on the page starts music smoothly
+document.body.addEventListener('click', function initAudioOnTap() {
+  if (!isMusicPlaying) {
+    startRomanticMusic();
+  }
+  document.body.removeEventListener('click', initAudioOnTap);
+}, { once: true });
