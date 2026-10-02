@@ -3,17 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>A Special Question for You ❤️</title>
+  <title>For My Radha, Sakina ❤️</title>
   <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Playfair+Display:ital,wght@1,600;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- Floating background petals and hearts -->
+  <!-- Ambient floating decorations -->
   <div class="background-decorations" id="decorations"></div>
   <canvas id="confetti-canvas"></canvas>
 
+  <!-- Romantic Music Controller -->
+  <div class="music-toggle-bar">
+    <button id="music-btn" class="music-pill" onclick="toggleRomanticMusic()">
+      <span id="music-icon">🎵</span>
+      <span id="music-text">Play Romantic Music</span>
+    </button>
+  </div>
+
   <div class="mobile-frame">
-    <!-- Screen 1: Intro -->
+    
+    <!-- Screen 1: Intro (Radha Love) -->
     <section class="card-screen active" id="screen-1">
       <div class="top-decor">
         <span class="blossom blossom-1">🌸</span>
@@ -25,37 +34,42 @@
         <div class="panda-illus">
           <!-- Cute Panda with Heart Eyes SVG -->
           <svg viewBox="0 0 160 160" width="130" height="130">
-            <!-- Ears -->
             <circle cx="36" cy="40" r="22" fill="#1e1e24"/>
             <circle cx="124" cy="40" r="22" fill="#1e1e24"/>
-            <!-- Head -->
             <ellipse cx="80" cy="85" rx="55" ry="50" fill="#ffffff" stroke="#f1f5f9" stroke-width="2"/>
-            <!-- Cheeks Blush -->
             <ellipse cx="45" cy="98" rx="10" ry="6" fill="#fca5a5" opacity="0.6"/>
             <ellipse cx="115" cy="98" rx="10" ry="6" fill="#fca5a5" opacity="0.6"/>
-            <!-- Eye Patches -->
             <ellipse cx="54" cy="78" rx="16" ry="14" fill="#1e1e24" transform="rotate(-15 54 78)"/>
             <ellipse cx="106" cy="78" rx="16" ry="14" fill="#1e1e24" transform="rotate(15 106 78)"/>
-            <!-- Heart Eyes -->
             <path d="M54 70 C48 64 40 70 40 76 C40 84 54 90 54 90 C54 90 68 84 68 76 C68 70 60 64 54 70 Z" fill="#ec4899"/>
             <path d="M106 70 C100 64 92 70 92 76 C92 84 106 90 106 90 C106 90 120 84 120 76 C120 70 112 64 106 70 Z" fill="#ec4899"/>
-            <!-- Nose & Mouth -->
             <ellipse cx="80" cy="94" rx="7" ry="5" fill="#1e1e24"/>
             <path d="M74 100 Q80 106 86 100" fill="none" stroke="#1e1e24" stroke-width="2.5" stroke-linecap="round"/>
-            <!-- Hands holding heart -->
             <ellipse cx="40" cy="115" rx="12" ry="10" fill="#1e1e24"/>
             <ellipse cx="120" cy="115" rx="12" ry="10" fill="#1e1e24"/>
           </svg>
         </div>
       </div>
 
-      <h1 class="main-title">Hey Batu...</h1>
-      <p class="subtitle">I was thinking, before our paths cross, I wanted to tell you something special.</p>
-      <p class="quote">"Every place we visit becomes a new page in our story."</p>
+      <div class="content-box">
+        <h1 class="main-title">Hey Sakina, my Batu...</h1>
+        
+        <p class="love-paragraph emphasis">
+          My inner feeling is like Radha for you, only Radha.
+        </p>
+
+        <p class="love-paragraph">
+          Let's build a future and create timeless moments together for a lifetime.
+        </p>
+
+        <p class="love-paragraph quote-style">
+          "Every moment we share becomes a precious page in our shared book of life." as my love for you, like Radha's, is pure.
+        </p>
+      </div>
 
       <div class="bottom-action">
-        <button class="btn-glow" onclick="goToScreen(2)">
-          Continue Our Adventure ✨
+        <button class="btn-glow" onclick="nextScreen(2)">
+          My Radha-like Love Awaits! ✨
         </button>
       </div>
 
@@ -65,7 +79,7 @@
       </div>
     </section>
 
-    <!-- Screen 2: The Big Question -->
+    <!-- Screen 2: Sakina Question -->
     <section class="card-screen" id="screen-2">
       <div class="top-decor">
         <span class="heart-float h-3">💖</span>
@@ -74,11 +88,8 @@
 
       <div class="panda-wrapper">
         <div class="panda-pair-illus">
-          <!-- Two Cute Pandas with Heart SVG -->
           <svg viewBox="0 0 200 130" width="160" height="110">
-            <!-- Center Floating Heart -->
             <path d="M100 20 C94 12 84 18 84 26 C84 36 100 46 100 46 C100 46 116 36 116 26 C116 18 106 12 100 20 Z" fill="#f43f5e" class="heart-pulse"/>
-            
             <!-- Left Panda -->
             <g transform="translate(10, 20)">
               <circle cx="28" cy="22" r="14" fill="#1e1e24"/>
@@ -95,7 +106,6 @@
               <ellipse cx="25" cy="70" rx="9" ry="7" fill="#1e1e24"/>
               <ellipse cx="65" cy="70" rx="9" ry="7" fill="#1e1e24"/>
             </g>
-
             <!-- Right Panda -->
             <g transform="translate(90, 20)">
               <circle cx="28" cy="22" r="14" fill="#1e1e24"/>
@@ -116,20 +126,28 @@
         </div>
       </div>
 
-      <h2 class="question-title">Sakina... will you explore the world with me?</h2>
-      <p class="question-sub">Say yes to being my partner in travel... 🥺✈️</p>
+      <div class="content-box">
+        <h2 class="question-title">Sakina... will you share your entire life with me?</h2>
+        <p class="question-sub">Say yes to being my partner in this life's journey... 🥺</p>
+      </div>
 
-      <div class="choice-buttons" id="choice-container">
-        <button class="btn-yes" id="btn-yes" onclick="handleYesClick()">
-          Yes 🌿
+      <div class="choice-buttons" id="choice-container-2">
+        <button class="btn-yes" id="btn-yes-2" onclick="handleYesClick()">
+          Yes, my Krishna 🌺
         </button>
-        <button class="btn-no" id="btn-no" onmouseover="dodgeNo()" onclick="dodgeNo()">
-          No... 💨
+        <button class="btn-no" id="btn-no-2" onmouseover="dodgeNo(2)" onclick="dodgeNo(2)">
+          Not today... 💨
         </button>
       </div>
 
-      <div id="persuasion-text" class="persuasion-msg hidden">
-        You can't say no to this adventure! 😉💖
+      <div id="persuasion-text-2" class="persuasion-msg hidden">
+        You are my Radha, you cannot say no! 😉💖
+      </div>
+
+      <div class="sub-action-box" style="margin-top: 1rem; width: 100%;">
+        <button class="btn-glow-small" onclick="nextScreen(3)">
+          Wait, there is more... ✨
+        </button>
       </div>
 
       <div class="bottom-decor">
@@ -138,8 +156,87 @@
       </div>
     </section>
 
-    <!-- Screen 3: Celebration & Promises -->
+    <!-- Screen 3: Batu Question (Kanhaiya) -->
     <section class="card-screen" id="screen-3">
+      <div class="top-decor">
+        <span class="blossom blossom-1">🌸</span>
+        <span class="heart-float h-3">💖</span>
+      </div>
+
+      <div class="panda-wrapper">
+        <div class="panda-pair-illus">
+          <svg viewBox="0 0 200 130" width="160" height="110">
+            <path d="M100 20 C94 12 84 18 84 26 C84 36 100 46 100 46 C100 46 116 36 116 26 C116 18 106 12 100 20 Z" fill="#f43f5e" class="heart-pulse"/>
+            <!-- Left Panda -->
+            <g transform="translate(10, 20)">
+              <circle cx="28" cy="22" r="14" fill="#1e1e24"/>
+              <circle cx="72" cy="22" r="14" fill="#1e1e24"/>
+              <ellipse cx="50" cy="50" rx="35" ry="30" fill="#ffffff" stroke="#f1f5f9" stroke-width="2"/>
+              <ellipse cx="32" cy="58" rx="6" ry="4" fill="#fca5a5" opacity="0.6"/>
+              <ellipse cx="68" cy="58" rx="6" ry="4" fill="#fca5a5" opacity="0.6"/>
+              <ellipse cx="38" cy="46" rx="9" ry="8" fill="#1e1e24"/>
+              <circle cx="40" cy="45" r="2.5" fill="#fff"/>
+              <ellipse cx="62" cy="46" rx="9" ry="8" fill="#1e1e24"/>
+              <circle cx="64" cy="45" r="2.5" fill="#fff"/>
+              <ellipse cx="50" cy="56" rx="4" ry="3" fill="#1e1e24"/>
+              <path d="M46 60 Q50 64 54 60" fill="none" stroke="#1e1e24" stroke-width="2" stroke-linecap="round"/>
+              <ellipse cx="25" cy="70" rx="9" ry="7" fill="#1e1e24"/>
+              <ellipse cx="65" cy="70" rx="9" ry="7" fill="#1e1e24"/>
+            </g>
+            <!-- Right Panda -->
+            <g transform="translate(90, 20)">
+              <circle cx="28" cy="22" r="14" fill="#1e1e24"/>
+              <circle cx="72" cy="22" r="14" fill="#1e1e24"/>
+              <ellipse cx="50" cy="50" rx="35" ry="30" fill="#ffffff" stroke="#f1f5f9" stroke-width="2"/>
+              <ellipse cx="32" cy="58" rx="6" ry="4" fill="#fca5a5" opacity="0.6"/>
+              <ellipse cx="68" cy="58" rx="6" ry="4" fill="#fca5a5" opacity="0.6"/>
+              <ellipse cx="38" cy="46" rx="9" ry="8" fill="#1e1e24"/>
+              <circle cx="36" cy="45" r="2.5" fill="#fff"/>
+              <ellipse cx="62" cy="46" rx="9" ry="8" fill="#1e1e24"/>
+              <circle cx="60" cy="45" r="2.5" fill="#fff"/>
+              <ellipse cx="50" cy="56" rx="4" ry="3" fill="#1e1e24"/>
+              <path d="M46 60 Q50 64 54 60" fill="none" stroke="#1e1e24" stroke-width="2" stroke-linecap="round"/>
+              <ellipse cx="35" cy="70" rx="9" ry="7" fill="#1e1e24"/>
+              <ellipse cx="75" cy="70" rx="9" ry="7" fill="#1e1e24"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+
+      <div class="content-box">
+        <h2 class="question-title">Batu... will you share your entire life with me?</h2>
+        <p class="question-sub">
+          Radha... will you give me the honour of being your lifelong companion? Let's make every single day a chapter in our love story. ❤️
+        </p>
+      </div>
+
+      <div class="choice-buttons" id="choice-container-3">
+        <button class="btn-yes" id="btn-yes-3" onclick="handleYesClick()">
+          Haan, mere Kanhaiya 🌺
+        </button>
+        <button class="btn-no" id="btn-no-3" onmouseover="dodgeNo(3)" onclick="dodgeNo(3)">
+          Not today... 💨
+        </button>
+      </div>
+
+      <div id="persuasion-text-3" class="persuasion-msg hidden">
+        Kanhaiya's Radha can never say no! 💖🦚
+      </div>
+
+      <div class="bottom-action">
+        <button class="btn-glow" onclick="handleYesClick()">
+          Be with your Radha always ✨
+        </button>
+      </div>
+
+      <div class="bottom-decor">
+        <span class="blossom blossom-3">🌸</span>
+        <span class="heart-float h-4">💕</span>
+      </div>
+    </section>
+
+    <!-- Screen 4: Celebration (My Life Partner Said Yes!) -->
+    <section class="card-screen" id="screen-4">
       <div class="top-decor">
         <span class="sparkle-star s-3">✦</span>
         <span class="heart-float h-5">💖</span>
@@ -147,9 +244,7 @@
 
       <div class="panda-wrapper">
         <div class="panda-celebration-illus">
-          <!-- Two Celebrating Pandas with Party Poppers SVG -->
           <svg viewBox="0 0 200 130" width="160" height="110">
-            <!-- Party Confetti Stars -->
             <text x="92" y="30" font-size="22">🎉</text>
             <!-- Left Cheering Panda -->
             <g transform="translate(10, 20)">
@@ -158,16 +253,13 @@
               <ellipse cx="50" cy="50" rx="35" ry="30" fill="#ffffff" stroke="#f1f5f9" stroke-width="2"/>
               <ellipse cx="30" cy="58" rx="7" ry="5" fill="#fca5a5" opacity="0.7"/>
               <ellipse cx="70" cy="58" rx="7" ry="5" fill="#fca5a5" opacity="0.7"/>
-              <!-- Happy Curved Eyes -->
               <path d="M33 46 Q39 40 45 46" fill="none" stroke="#1e1e24" stroke-width="3" stroke-linecap="round"/>
               <path d="M55 46 Q61 40 67 46" fill="none" stroke="#1e1e24" stroke-width="3" stroke-linecap="round"/>
               <ellipse cx="50" cy="54" rx="4" ry="3" fill="#1e1e24"/>
               <path d="M44 58 Q50 66 56 58" fill="#f43f5e" stroke="#1e1e24" stroke-width="1.5"/>
-              <!-- Arms Up Cheering -->
               <ellipse cx="20" cy="35" rx="8" ry="12" fill="#1e1e24" transform="rotate(-30 20 35)"/>
               <ellipse cx="75" cy="65" rx="8" ry="8" fill="#1e1e24"/>
             </g>
-
             <!-- Right Cheering Panda -->
             <g transform="translate(90, 20)">
               <circle cx="28" cy="22" r="14" fill="#1e1e24"/>
@@ -175,12 +267,10 @@
               <ellipse cx="50" cy="50" rx="35" ry="30" fill="#ffffff" stroke="#f1f5f9" stroke-width="2"/>
               <ellipse cx="30" cy="58" rx="7" ry="5" fill="#fca5a5" opacity="0.7"/>
               <ellipse cx="70" cy="58" rx="7" ry="5" fill="#fca5a5" opacity="0.7"/>
-              <!-- Happy Curved Eyes -->
               <path d="M33 46 Q39 40 45 46" fill="none" stroke="#1e1e24" stroke-width="3" stroke-linecap="round"/>
               <path d="M55 46 Q61 40 67 46" fill="none" stroke="#1e1e24" stroke-width="3" stroke-linecap="round"/>
               <ellipse cx="50" cy="54" rx="4" ry="3" fill="#1e1e24"/>
               <path d="M44 58 Q50 66 56 58" fill="#f43f5e" stroke="#1e1e24" stroke-width="1.5"/>
-              <!-- Arms Up Cheering -->
               <ellipse cx="80" cy="35" rx="8" ry="12" fill="#1e1e24" transform="rotate(30 80 35)"/>
               <ellipse cx="25" cy="65" rx="8" ry="8" fill="#1e1e24"/>
             </g>
@@ -189,32 +279,32 @@
       </div>
 
       <div class="success-header">
-        <h2 class="success-title">MY ADVENTURE PARTNER SAID YES! YAYYYYYY! 🎉</h2>
-        <p class="success-subtitle">Thank You, Batu. My little traveler. My Sakina ❤️</p>
+        <h2 class="success-title">MY LIFE PARTNER SAID YES! YAYYYYYY! 🎉</h2>
+        <p class="success-subtitle">Thank You, Sakina (my Batu). My soulmate, My only Radha ❤️</p>
       </div>
 
-      <!-- Promises Box -->
+      <!-- 5 Life Promises Box -->
       <div class="promises-card">
         <ul class="promises-list">
           <li>
             <span class="promise-icon">💖</span>
-            <span>To explore new horizons with you</span>
+            <span>To grow older and wiser with you, our hearts aligned.</span>
           </li>
           <li>
             <span class="promise-icon">🗺️</span>
-            <span>To build a map of memories</span>
+            <span>To build a foundation of memories, each one a jewel in our story.</span>
           </li>
           <li>
             <span class="promise-icon">✨</span>
-            <span>To make every place feel like home</span>
+            <span>To make every place, where we are together, feel like our home, filled with love and warmth.</span>
           </li>
           <li>
             <span class="promise-icon">🌅</span>
-            <span>To watch sunsets around the world</span>
+            <span>To watch sunsets of life around the world, together in peace.</span>
           </li>
           <li>
             <span class="promise-icon">💫</span>
-            <span>To support all your wildest dreams</span>
+            <span>To support all your wildest dreams, in this life and the next.</span>
           </li>
         </ul>
       </div>
@@ -230,6 +320,7 @@
         <span class="heart-float h-6">💕</span>
       </div>
     </section>
+
   </div>
 
   <script src="script.js"></script>
