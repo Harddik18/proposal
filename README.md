@@ -1,14 +1,22 @@
-# 🌸 Romantic Adventure Proposal Web App
+# 🌸 For My Radha, Sakina (My Batu) ❤️
 
-A modern, interactive proposal story web application inspired by cute panda illustrations, floating sakura petals, interactive runaway buttons, and promises.
+A romantic, heartfelt interactive proposal web app designed with a timeless Radha-Krishna soulmate theme, cute animated pandas, romantic synthesizer music, and lifetime promises.
 
 ## ✨ Features
-- **Story Progression Flow**: 3 beautifully designed screen transitions (Intro ➔ The Big Question ➔ Celebration).
-- **Interactive No Button**: Playfully dodges clicks and encourages saying YES.
-- **Heart & Sakura Confetti**: Live particle explosions and romantic chime melodies on celebration.
-- **5 Promises Card**: Beautiful list of promises for the journey ahead.
-- **100% Mobile & Touch Friendly**: Looks and feels like a native mobile app on any smartphone or browser.
+- **Story Flow**:
+  1. **Intro**: "Hey Sakina, my Batu... My inner feeling is like Radha for you, only Radha..."
+  2. **Question 1**: "Sakina... will you share your entire life with me?" (Options: "Yes, my Krishna 🌺" vs playful "Not today... 💨")
+  3. **Question 2**: "Batu... will you share your entire life with me? Radha... will you give me the honour of being your lifelong companion?" (Options: "Haan, mere Kanhaiya 🌺" / "Be with your Radha always ✨")
+  4. **Celebration**: "MY LIFE PARTNER SAID YES! YAYYYYYY! 🎉 Thank You, Sakina (my Batu). My soulmate, My only Radha ❤️"
+- **5 Timeless Life Promises**:
+  - To grow older and wiser with you, our hearts aligned.
+  - To build a foundation of memories, each one a jewel in our story.
+  - To make every place feel like our home, filled with love and warmth.
+  - To watch sunsets of life around the world, together in peace.
+  - To support all your wildest dreams, in this life and the next.
+- **Embedded Romantic Music**: High quality ambient romantic melody that works in all browsers & phones without external dependencies.
+- **Interactive Confetti & Petals**: Continuous floating sakura petals and massive celebration heart burst.
 
-## 👨‍💻 Created For
-- **Developer**: Mandani Hardik
+## 👨‍💻 Developer
+- **Created By**: Mandani Hardik
 - **GitHub**: [@Harddik18](https://github.com/Harddik18)
